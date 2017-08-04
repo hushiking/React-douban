@@ -141,4 +141,5 @@ class AboutContainer extends React.Component {
   }
 }
 
+// antd的Form标准用法
 export default Form.create()(AboutContainer)

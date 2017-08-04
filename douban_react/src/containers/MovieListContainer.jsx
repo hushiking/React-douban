@@ -107,7 +107,9 @@ export default class MovieListContainer extends React.Component {
 
     // 将messages对象转化json字符串格式方便传递参数
     const message = JSON.stringify(messages)
+    // 接收service发送的fetch请求返回的promise对象
     const promise = service.getMovieListData(message)
+    // 通过promise.then获取resolve的数据
     promise.then(
       data => {
         console.log(data)

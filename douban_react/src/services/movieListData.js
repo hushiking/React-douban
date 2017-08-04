@@ -5,6 +5,7 @@ export default {
   getMovieListData(message) {
     // console.log(7)
     console.log(message)
+    // 返回一个Promise对象
     return new Promise((resolve, reject) => {
       // 如果有多个参数, message是对象字符串, 否则message就是参数本身
       const url = `${config.HTTP}${config.SERVER_PATH}:${config.PORT}/api/getMovieListData?message=${message}`
@@ -57,14 +58,14 @@ export default {
     return new Promise((resolve, reject) => {
       const url = `${config.HTTP}${config.SERVER_PATH}:${config.PORT}/api/searchMovieListData?message=${message}`
       fetch(url)
-        .then(response => {
+        .then(response => { // promise第一步返回response
           if (response.ok) {
             return response.json()
           } else {
             console.error(`服务器忙,请稍后再试;\r\nCode:${response.status}`)
           }
         })
-        .then(data => {
+        .then(data => { // 第二步通过resolve传递数据到MovieListContainer组件中
           console.log(data)
           resolve(data)
         })

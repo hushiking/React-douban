@@ -12,15 +12,15 @@ var CleanPlugin = require('clean-webpack-plugin')
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, './src/index.jsx'),
-    vendor: ['react', 'react-dom', 'react-router']
+    app: path.resolve(__dirname, './src/index.jsx'), // 文件入口
+    vendor: ['react', 'react-dom', 'react-router'] // 通过CommonsChunkPlugin抽取第三方库
   },
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, './dist'), // 文件打包输出目录
+    filename: '[name].bundle.js', // name对应入口的app, 打包为一个整体
     // 为了做代码的异步加载
     publicPath: '/',
-    chunkFilename: '[name]_[chunkhash:8].js'
+    chunkFilename: '[name]_[chunkhash:8].js' // name对应Routers.jsx中异步加载各个组件的名称
   },
   module: {
     rules: [
@@ -34,7 +34,12 @@ module.exports = {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: 'css-loader'
+          use: [{
+            loader: 'css-loader',
+            options: {
+              minimize: true // 压缩抽取的css, 需要安装clean-css包
+            }
+          }]
         })
       },
       {
@@ -78,22 +83,22 @@ module.exports = {
     // 构建之前先删除dist目录下面的文件夹
     new CleanPlugin(['./dist']),
     // 分离第三方应用插件,name属性会自动指向entry中vendor属性，filename属性中的文件会自动构建到output中的path属性下面
-    new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendors.js'}),
+    new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: '[name].js'}),
     // 用webpack压缩代码，可以忽略代码中的警告
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-      warnings: false
+        warnings: false
       }
     }),
     // 可以新建多个抽离样式的文件，这样就可以有多个css文件了。
-    new ExtractTextPlugin("app.css"),
+    new ExtractTextPlugin("[name].css"), // name对应入口的app
     // compiling our final assets
     new HtmlWebpackPlugin({
-      template: './src/template.html',
-      htmlWebpackPlugin: {
+      template: './src/template.html', // html模板路径
+      htmlWebpackPlugin: { // 打包后的html文件自动引用css, js文件
         "files": {
-        "css": ["app.css"],
-        "js": ["app.bundle.js","vendor.js"]
+          "css": ["[name].css"],
+          "js": ["[name].bundle.js","[name].js"]
         }
       },
       // 效果不大，情怀至上

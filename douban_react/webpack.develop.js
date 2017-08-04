@@ -19,10 +19,10 @@ module.exports = {
 				use: [{
 					loader: 'eslint-loader',
 					options: {
-						formatter: require('eslint-friendly-formatter')
+						formatter: require('eslint-friendly-formatter') // 编译后错误报告格式
 					}
 				}]
-				// exclude: /node_modules/ 可以不用定义这个字段的属性值，eslint会自动忽略node_modules和bower_
+				// exclude: /node_modules/ 可以不用定义这个字段的属性值，eslint会自动忽略node_modules和bower_components
 			},
 			{
 				test: /\.jsx?$/,
