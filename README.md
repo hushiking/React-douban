@@ -2,7 +2,7 @@
 本应用主要采用 react 框架, 通过 webpack2 整合打包, 开发豆瓣电影查询功能
 
 webpack2 使用 babel 转换 ES6 代码, 使用 eslint 对 js 代码进行规范性检查
-## The server of douban
+## The Server of douban
 其中 douban_server 文件夹是通过 node.js 的 express 手动搭建代理服务器实现跨域请求豆瓣电影API
 ## The React App of douban
 douban_react 文件夹包含 src 源文件和其他一些配置文件

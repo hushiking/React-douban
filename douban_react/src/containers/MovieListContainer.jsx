@@ -61,6 +61,7 @@ export default class MovieListContainer extends React.Component {
     this.theDiv.onscroll = e => {
       if (e.target.scrollHeight === e.target.scrollTop + e.target.offsetHeight) {
         console.log(5)
+        // 如果到底了, 直接返回, 防止手贱多次触发滚动事件
         if (this.state.isBottom) {
           return
         }
@@ -155,7 +156,7 @@ export default class MovieListContainer extends React.Component {
       </div>
     )
   }
-  // 循环渲染电影列表数据
+  // 循环渲染电影列表数据, 使用ref属性获取DIV元素
   renderMovieList = () => {
     return (
       <div ref={div => (this.theDiv = div)} className="movieList_container">
