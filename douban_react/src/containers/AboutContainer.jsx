@@ -1,4 +1,5 @@
 import React from 'react'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
 import PropTypes from 'prop-types'
 import { message as Message, Form, Input, Tooltip, Icon, Select, Button } from 'antd'
 import service from '../services/aboutService.js'
@@ -12,6 +13,7 @@ const Option = Select.Option
 class AboutContainer extends React.Component {
   constructor(props) {
     super(props)
+    this.shouldComponentUpdate = () => PureRenderMixin.shouldComponentUpdate
     this.state = {
 
     }

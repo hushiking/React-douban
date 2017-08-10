@@ -67,7 +67,7 @@ app.post('/api/sendFeedback', (req, res, next) => {
 		status: 'OK'
 	})
 })
-
+// 解决浏览器链接跳转问题（不算服务器端渲染），需要访问node服务器的地址127.0.0.1:3000
 app.get('*', (req, res) => {
 	res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 })

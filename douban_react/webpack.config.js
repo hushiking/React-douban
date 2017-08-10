@@ -1,4 +1,5 @@
 var path = require('path')
+var webpack = require('webpack')
 var OpenBrowserPlugin = require('open-browser-webpack-plugin')
 
 module.exports = {
@@ -42,7 +43,7 @@ module.exports = {
 			},
 			{
 				test: /\.scss$/,
-				loaders: [
+				use: [
 					'style-loader',
 					'css-loader',
 					'sass-loader'
@@ -50,15 +51,20 @@ module.exports = {
 			},
 			{
 				test: /\.(png|jpg|jpeg|gif)$/,
-				loader: 'url-loader'
+				loader: 'url-loader?limit=25000'
 			},
 			{
 				test: /\.(eot|woff|ttf|woff2|svg)$/,
-				loader: 'url-loader'
+				loader: 'url-loader?limit=50000'
 			}
 		]
 	},
 	plugins: [
-		new OpenBrowserPlugin({url: 'http://localhost:8080/', browser: 'chrome'})
+		// 打包完成自动打开浏览器
+		new OpenBrowserPlugin({url: 'http://localhost:8080/', browser: 'chrome'}),
+		// 可在业务js代码中使用__DEV__判断是否是dev模式（dev模式下可以提示错误、测试报告等，production模式不提示）
+    new webpack.DefinePlugin({
+      __DEV__: JSON.stringify(JSON.parse((process.env.NODE_ENV == 'dev') || 'false'))
+    })
 	]
 }

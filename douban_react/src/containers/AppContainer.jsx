@@ -1,4 +1,5 @@
 import React from 'react'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
 import {Link} from 'react-router'
 import PropTypes from 'prop-types'
 
@@ -7,6 +8,10 @@ import '../styles/app.css'
 export default class AppContainer extends React.Component {
   constructor(props) {
     super(props)
+    // React最基本优化方式，组件每次更新之前都要过一遍这个函数，返回true则更新，返回false则不更新
+    // 默认情况下，这个函数会一直返回true，也就是说，如果有一些无效的改动触发了这个函数，也会导致无效的更新
+    // 最好每个函数都写上这个函数
+	this.shouldComponentUpdate = () => PureRenderMixin.shouldComponentUpdate
     this.state = {
 
     }

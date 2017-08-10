@@ -1,4 +1,5 @@
 import React from 'react'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
 import PropTypes from 'prop-types'
 import Loading from '../components/Loading.jsx'
 import service from '../services/movieListData.js'
@@ -8,6 +9,7 @@ import '../styles/movieList.css'
 export default class MovieListContainer extends React.Component {
   constructor(props) {
     super(props)
+    this.shouldComponentUpdate = () => PureRenderMixin.shouldComponentUpdate
     this.state = {
       // 是否显示加载效果
       isLoading: true,
@@ -59,6 +61,9 @@ export default class MovieListContainer extends React.Component {
   // 为滚动的容器添加滚动监听事件
   addEventListener = () => {
     this.theDiv.onscroll = e => {
+      console.log(e)
+      console.log(e.target)
+      console.log(e.target.offsetHeight)
       if (e.target.scrollHeight === e.target.scrollTop + e.target.offsetHeight) {
         console.log(5)
         // 如果到底了, 直接返回, 防止手贱多次触发滚动事件

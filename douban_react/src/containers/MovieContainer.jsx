@@ -1,4 +1,5 @@
 import React from 'react'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router'
 
@@ -7,6 +8,7 @@ import '../styles/movie.css'
 export default class MovieContainer extends React.Component {
   constructor(props) {
     super(props)
+    this.shouldComponentUpdate = () => PureRenderMixin.shouldComponentUpdate
     this.state = {
       movieType: 'in_theaters',
       keyword: ''

@@ -1,4 +1,5 @@
 import React from 'react'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
 import PropTypes from 'prop-types'
 import Loading from '../components/Loading.jsx'
 import service from '../services/movieListData.js'
@@ -8,6 +9,7 @@ import '../styles/movieDetail.css'
 export default class MovieDetailContainer extends React.Component {
   constructor(props) {
     super(props)
+    this.shouldComponentUpdate = () => PureRenderMixin.shouldComponentUpdate
     this.state = {
       // 是否显示加载效果
       isLoading: true,

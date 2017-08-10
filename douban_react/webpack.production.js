@@ -13,14 +13,14 @@ var CleanPlugin = require('clean-webpack-plugin')
 module.exports = {
   entry: {
     app: path.resolve(__dirname, './src/index.jsx'), // 文件入口
-    vendor: ['react', 'react-dom', 'react-router'] // 通过CommonsChunkPlugin抽取第三方库
+    vendor: ['react', 'react-dom', 'react-router', 'react-loading', 'antd', 'react-addons-perf', 'react-addons-pure-render-mixin'] // 通过CommonsChunkPlugin抽取第三方库
   },
   output: {
     path: path.resolve(__dirname, './dist'), // 文件打包输出目录
-    filename: '[name].bundle.js', // name对应入口的app, 打包为一个整体
+    filename: 'js/[name].[chunkhash:8].js', // name对应入口的app, 打包为一个整体
     // 为了做代码的异步加载
     publicPath: '/',
-    chunkFilename: '[name]_[chunkhash:8].js' // name对应Routers.jsx中异步加载各个组件的名称
+    chunkFilename: '[name].[chunkhash:8].js' // name对应Routers.jsx中异步加载各个组件的名称
   },
   module: {
     rules: [
@@ -46,7 +46,7 @@ module.exports = {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: 'css-loader!sass-loader'
+          use: ['css-loader', 'sass-loader']
         })
       },
       // 1kb=1024b 1b=8bit   25000bit~3kb
@@ -83,7 +83,7 @@ module.exports = {
     // 构建之前先删除dist目录下面的文件夹
     new CleanPlugin(['./dist']),
     // 分离第三方应用插件,name属性会自动指向entry中vendor属性，filename属性中的文件会自动构建到output中的path属性下面
-    new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: '[name].js'}),
+    new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'js/[name].[chunkhash:8].js'}),
     // 用webpack压缩代码，可以忽略代码中的警告
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -91,16 +91,16 @@ module.exports = {
       }
     }),
     // 可以新建多个抽离样式的文件，这样就可以有多个css文件了。
-    new ExtractTextPlugin("[name].css"), // name对应入口的app
+    new ExtractTextPlugin("css/[name].[chunkhash:8].css"), // name对应入口的app
     // compiling our final assets
     new HtmlWebpackPlugin({
-      template: './src/template.html', // html模板路径
-      htmlWebpackPlugin: { // 打包后的html文件自动引用css, js文件
+      template: './src/template.html', // html模板路径，HtmlWebpackPlugin自动引入css，js文件
+      /*htmlWebpackPlugin: { // 打包后的html文件自动引用css, js文件
         "files": {
-          "css": ["[name].css"],
-          "js": ["[name].bundle.js","[name].js"]
+          "css": ["[name].[chunkhash:8].css"],
+          "js": ["[name].[chunkhash:8].js","[name].[chunkhash:8].js"]
         }
-      },
+      },*/
       // 效果不大，情怀至上
       minify: {
         removeComments: true,
@@ -109,7 +109,7 @@ module.exports = {
       }
     }),
     new webpack.DefinePlugin({
-      // 根据生产环境去掉react中的警告，react会自己判断
+      // 根据生产环境去掉react中的警告，react会自己判断，定义生产环境，编译React时压缩到最小
       'process.env': {
           NODE_ENV: '"production"'
       }
