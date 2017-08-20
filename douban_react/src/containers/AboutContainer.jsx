@@ -5,7 +5,6 @@ import { message as Message, Form, Input, Tooltip, Icon, Select, Button } from '
 import service from '../services/aboutService.js'
 
 import '../styles/about.scss'
-import 'antd/dist/antd.css'
 
 const FormItem = Form.Item
 const Option = Select.Option
