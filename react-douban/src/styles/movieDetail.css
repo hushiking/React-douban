@@ -1,0 +1,20 @@
+.movieDetail_container {
+    /* 必须设置高度否则滚动条不生效 */
+    height: 100%;
+    overflow-y: scroll;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 700!important;
+}
+
+p:first-of-type {
+    text-align: center;
+}
+
+.movieDetail_image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

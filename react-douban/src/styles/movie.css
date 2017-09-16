@@ -1,0 +1,51 @@
+.movie_container {
+    height: 100%;
+    display: flex;
+}
+
+.movie_menu {
+    background-color: orangered;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.movie_menu a {
+    padding-top: 2rem;
+    color: #ccc;
+}
+
+.movie_menu a:hover {
+    color: gold;
+    font-weight: 700;
+}
+
+.movie_right {
+    background-color: seagreen;
+    flex: 3.5;
+}
+
+.movie_search {
+    height: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.movie_search input {
+    width: 75%;
+    border-radius: 10px 0 0 10px;
+    text-indent: 2rem;
+}
+
+.movie_content {
+    height: 93%;
+    background-color: pink;
+}
+
+a.movie_current {
+    color: gold;
+    font-weight: 700;
+}

@@ -1,0 +1,29 @@
+.movieList_container {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.movieList_item {
+    display: flex;
+    height: 10rem;
+}
+
+.movieList_item img {
+    width: 5rem;
+    height: 9rem;
+}
+
+.movieList_item div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.movieList_hide {
+    display: none;
+}
+
+.movieList_show {
+    background-color: lawngreen;
+    text-align: center;
+}

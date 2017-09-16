@@ -1,0 +1,34 @@
+.app {
+    height: 100%;
+    width: 100%;
+}
+
+.app_header {
+    height: 10%;
+    background-color: purple;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.app_content {
+    height: 80%;
+    background-color: yellowgreen;
+}
+
+.app_footer {
+    height: 10%;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app_header a {
+    color: #fff;
+}
+
+.app_header a:hover {
+    color: gold;
+    font-weight: 700;
+}
