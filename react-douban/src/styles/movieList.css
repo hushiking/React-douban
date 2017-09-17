@@ -19,11 +19,15 @@
     justify-content: space-evenly;
 }
 
+.movieList_item h1 {
+    font-size: 1em;
+}
+
 .movieList_hide {
     display: none;
 }
 
 .movieList_show {
-    background-color: lawngreen;
+    background-color: rgb(108, 203, 235);
     text-align: center;
 }

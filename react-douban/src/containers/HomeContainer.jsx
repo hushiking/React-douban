@@ -13,7 +13,7 @@ export default class HomeContainer extends React.Component {
         return (
             <div>
                 这是首页容器组件
-      </div>
+            </div>
         )
     }
 }

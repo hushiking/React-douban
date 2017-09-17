@@ -9,7 +9,10 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: '[name].bundle.js'
+		filename: '[name].bundle.js',
+		// 为了做代码的异步加载
+        publicPath: '/',
+        chunkFilename: '[name].[chunkhash:8].js' // name对应Routers.jsx中异步加载各个组件的名称
 	},
 	module: {
 		rules: [

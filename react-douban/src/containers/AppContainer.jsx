@@ -39,7 +39,7 @@ export default class AppContainer extends React.Component {
                     {/* 路由匹配的内容 */}
                     {this.props.children}
                 </div>
-                <div className="app_footer">版权@红心K丶釒</div>
+                <div className="app_footer">CopyRight &copy; 2016-2017</div>
             </div>
         )
     }
