@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import PropTypes from 'prop-types'
 
 import '../styles/app.css'
+import '../styles/font_awesome/css/font-awesome.css'
 
 export default class AppContainer extends React.Component {
     constructor(props) {

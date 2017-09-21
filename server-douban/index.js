@@ -23,6 +23,15 @@ app.get('/', (req, res, next) => {
 	res.send('返回了数据')
 	next()
 })
+// 获取北美票房榜
+app.get('/api/getHomeMovieData', (req, res, next) => {
+	const url = 'https://api.douban.com/v2/movie/us_box'
+	request(url, (error, response, body) => {
+		if (!error) {
+			res.send(body)
+		}
+	})
+})
 // 获取电影列表数据
 app.get('/api/getMovieListData', (req, res, next) => {
 	const message = JSON.parse(req.query.message)

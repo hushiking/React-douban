@@ -49,8 +49,10 @@ export default class MovieContainer extends React.Component {
                 </div>
                 <div className="movie_right">
                     <div className="movie_search">
-                        <input type="text" value={this.state.keyword} onChange={this.changeKeyword} />
-                        <button onClick={() => this.goMovieSearch(this.state.keyword)}>搜索</button>
+                        <form action="#">
+                            <input type="text" value={this.state.keyword} onChange={this.changeKeyword} />
+                            <button onClick={() => this.goMovieSearch(this.state.keyword)}></button>
+                        </form>
                     </div>
                     <div className="movie_content">
                         {this.props.children}

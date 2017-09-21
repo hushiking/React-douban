@@ -6,6 +6,7 @@
 .movieList_item {
     display: flex;
     height: 10rem;
+    padding-left: 3rem;
 }
 
 .movieList_item img {
@@ -17,10 +18,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    margin-left: 3rem;
 }
 
 .movieList_item h1 {
-    font-size: 1em;
+    font-size: 1rem;
 }
 
 .movieList_hide {

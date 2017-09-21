@@ -13,7 +13,8 @@
 
 .app_content {
     height: 80%;
-    background-color: rgb(243, 79, 89);
+    overflow-y: auto;
+    /* background-color: rgb(243, 79, 89); */
 }
 
 .app_footer {

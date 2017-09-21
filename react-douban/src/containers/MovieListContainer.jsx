@@ -33,26 +33,16 @@ export default class MovieListContainer extends React.Component {
         router: PropTypes.object
     }
     componentDidMount() {
-        /* setTimeout(() => {
-          this.setState({
-            isLoading: false,
-            movieListData: []
-          })
-        }, 2000) */
-        console.log(1)
         this.fetch(this.state.messages.movieType)
     }
     componentWillReceiveProps(nextProps) {
-        console.log(2)
         this.fetch(nextProps.params.movieType)
     }
     componentDidUpdate(prevProps, prevState) {
         // 根据isLoading判断movieType类型是否发生改变, 然后重新发送url请求
         if (this.state.isLoading) {
-            console.log(3)
             this.fetch(this.state.messages.movieType)
         } else {
-            console.log(4)
             // 将电影列表绑定的onscroll事件清空, 以便再次绑定, 否则会重复绑定
             this.theDiv.onscroll = null
             this.addEventListener()
@@ -61,11 +51,10 @@ export default class MovieListContainer extends React.Component {
     // 为滚动的容器添加滚动监听事件
     addEventListener = () => {
         this.theDiv.onscroll = e => {
-            console.log(e)
-            console.log(e.target)
-            console.log(e.target.offsetHeight)
+            // console.log(e)
+            // console.log(e.target)
+            // console.log(e.target.offsetHeight)
             if (e.target.scrollHeight === e.target.scrollTop + e.target.offsetHeight) {
-                console.log(5)
                 // 如果到底了, 直接返回, 防止手贱多次触发滚动事件
                 if (this.state.isBottom) {
                     return
@@ -81,7 +70,6 @@ export default class MovieListContainer extends React.Component {
     fetch = (movieType) => {
         // 如果电影类型发生改变, 重新设置state
         if (this.state.messages.movieType !== movieType) {
-            console.log(6)
             // 电影类型改变后, 重新设置movieList_container的滚轮高度, 并清空绑定事件
             this.theDiv.scrollTop = 0
             this.theDiv.onscroll = null
@@ -102,7 +90,6 @@ export default class MovieListContainer extends React.Component {
             })
             return
         }
-        console.log(7)
         // ES6深拷贝对象
         let messages = Object.assign({}, this.state.messages)
         let movieListData = [].concat(this.state.movieListData)
@@ -143,6 +130,7 @@ export default class MovieListContainer extends React.Component {
     }
     // 渲染loading效果
     renderLoading = () => {
+        console.log('loading...')
         return (
             <div className="movieList_container">
                 <Loading />
