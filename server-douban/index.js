@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 })
 app.get('/', (req, res, next) => {
 	res.send('返回了数据')
-	next()
+	// next()
 })
 // 获取北美票房榜
 app.get('/api/getHomeMovieData', (req, res, next) => {
