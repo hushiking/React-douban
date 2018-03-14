@@ -53,11 +53,11 @@ module.exports = {
             // 如果图片小于25000b, 自动转化为base64格式图片文件, 减少网络请求服务器次数
             {
                 test: /\.(png|jpg|jpeg|gif)$/,
-                loader: 'url?limit=25000&name=images/[name].[ext]'
+                loader: 'url-loader?limit=25000&name=images/[name].[ext]'
             },
             {
                 test: /\.(eot|woff|ttf|woff2|svg)$/,
-                loader: 'url?limit=50000&name=fonts/[name].[ext]'
+                loader: 'url-loader?limit=50000&name=fonts/[name].[ext]'
             },
         ]
     },
@@ -112,7 +112,8 @@ module.exports = {
             // 根据生产环境去掉react中的警告，react会自己判断，定义生产环境，编译React时压缩到最小
             'process.env': {
                 NODE_ENV: '"production"'
-            }
+            },
+            __DEV__: false
         }),
     ]
 }
